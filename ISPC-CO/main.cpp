@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/time.h>
+#include <limits>
 
 #include "main_ispc.h"
 using namespace ispc;
@@ -18,8 +19,10 @@ int main() {
 	float mat_B[SIZE][SIZE] = {};
 	float mat_B_T[SIZE][SIZE] = {};
 	float mult[SIZE][SIZE] =  {};
-	float mult_T[SIZE][SIZE] =  {};
 	struct timeval start_time, stop_time;
+	int min_row = 0;
+	int min_col = 0;
+	float min = std::numeric_limits<float>::max();
 
 	// Array initialization
 	for (int i=0; i < SIZE; i++) {
@@ -70,28 +73,31 @@ int main() {
 		for (int j=0; j < SIZE; j++) {
 			mult[i][j] = 0;
 			mult[i][j] = vector_mult(mat_A[i], mat_B_T[j], SIZE);
-			//for (int k=0; k < SIZE; k++) {
-			//	mult_T[i][j] += mat_A[i][k] * mat_B_T[j][k]; 
-			//}
+			if (mult[i][j] < min) {
+				min = mult[i][j];
+				min_row = i;
+				min_col = j;
+			}
 			//printf("%f\t", mult[i][j]);
 		}
 		//printf("\n");
 	}
 	//printf("\n");
+	gettimeofday(&stop_time, NULL);
 
 	/*
 	// print B_T
 	for (int i=0; i < SIZE; i++) {
 		for (int j=0; j < SIZE; j++) {
-			printf("%f\t", mult_T[i][j]);
+			printf("%f\t", mult[i][j]);
 		}
 		printf("\n");
 	}
 	printf("\n");
 	*/
 	
-	gettimeofday(&stop_time, NULL);
 	
+	printf("Min value is %f at coordinates (%d, %d)\n", min, min_row, min_col);
 	long int start_time_final, stop_time_final;
 	start_time_final = (long int)start_time.tv_sec * 1000000 + (long int)start_time.tv_usec;
 	stop_time_final = (long int)stop_time.tv_sec * 1000000 + (long int)stop_time.tv_usec;
