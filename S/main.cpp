@@ -84,8 +84,8 @@ int main() {
 	long int start_time_final, stop_time_final;
 	start_time_final = (long int)start_time.tv_sec * 1000000 + (long int)start_time.tv_usec;
 	stop_time_final = (long int)stop_time.tv_sec * 1000000 + (long int)stop_time.tv_usec;
-	printf("start final time is %ld \n", start_time_final);
-	printf("stop final time is %ld \n", stop_time_final);
+	//printf("start final time is %ld \n", start_time_final);
+	//printf("stop final time is %ld \n", stop_time_final);
 	
 	printf("multiplication time: %ld microseconds\n", stop_time_final - start_time_final);
 
