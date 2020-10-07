@@ -14,11 +14,12 @@ using namespace ispc;
 	#define SIZE 10
 #endif
 
+float mat_A[SIZE][SIZE] = {};
+float mat_B[SIZE][SIZE] = {};
+float mat_B_T[SIZE][SIZE] = {};
+float mult[SIZE][SIZE] =  {};
+
 int main() {
-	float mat_A[SIZE][SIZE] = {};
-	float mat_B[SIZE][SIZE] = {};
-	float mat_B_T[SIZE][SIZE] = {};
-	float mult[SIZE][SIZE] =  {};
 	struct timeval start_time, stop_time;
 	int min_row = 0;
 	int min_col = 0;
