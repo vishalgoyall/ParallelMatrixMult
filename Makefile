@@ -28,8 +28,9 @@ compile_OMPI: OMP-CO-ISPC/main.cpp
 	g++ $< OMP-CO-ISPC/main_ispc.o -fopenmp -o OMP-CO-ISPC/main -D SIZE=${SIZE} -D NUM_OF_THREADS=$(THREADS)
 
 compile_ISPCT: ISPC-CO-Tasks/main.cpp
-	ispc ISPC-CO-Tasks/main.ispc -h ISPC-CO-Tasks/main_ispc.h -o ISPC-CO-Tasks/main_ispc.o 
-	g++ $< ISPC-CO-Tasks/main_ispc.o -o ISPC-CO-Tasks/main -D SIZE=${SIZE}
+	ispc ISPC-CO-Tasks/main.ispc -h ISPC-CO-Tasks/main_ispc.h -o ISPC-CO-Tasks/main_ispc.o -DSIZE=${SIZE} -DNUM_OF_TASKS=${THREADS}
+	g++ -c ISPC-CO-Tasks/tasksys.cpp -o ISPC-CO-Tasks/tasksys.o -pthread
+	g++ $< ISPC-CO-Tasks/main_ispc.o ISPC-CO-Tasks/tasksys.o -pthread -o ISPC-CO-Tasks/main -D SIZE=${SIZE} -D NUM_OF_TASKS=${THREADS}
 
 ##############################
 # Targets to run all the individual codes
