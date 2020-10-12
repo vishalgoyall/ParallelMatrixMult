@@ -55,7 +55,7 @@ void *sub_matrix_mult (void* thread_args) {
 }
 
 int main() {
-	struct timeval start_time, stop_time;
+	struct timeval start_time, stop_time, time1;
 	int min_row = 0;
 	int min_col = 0;
 	float min = std::numeric_limits<float>::max();
@@ -72,8 +72,8 @@ int main() {
 	// Array initialization
 	for (int i=0; i < SIZE; i++) {
 		for (int j=0; j < SIZE; j++) {
-			mat_A[i][j] = (float)(rand() % 10);
-			mat_B[i][j] = (float)(rand() % 10);
+			mat_A[i][j] = rand()/(float)1147483648;
+			mat_B[i][j] = rand()/(float)1147483648;
 		}
 	}
 

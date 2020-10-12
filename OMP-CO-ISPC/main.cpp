@@ -38,8 +38,8 @@ int main() {
 	// Array initialization
 	for (int i=0; i < SIZE; i++) {
 		for (int j=0; j < SIZE; j++) {
-			mat_A[i][j] = (float)(rand() % 10);
-			mat_B[i][j] = (float)(rand() % 10);
+			mat_A[i][j] = rand()/(float)1147483648;
+			mat_B[i][j] = rand()/(float)1147483648;
 		}
 	}
 
@@ -68,10 +68,13 @@ int main() {
 	
 	// Transposing the matrix
 	int ii;
-	//#pragma omp parallel for
+	#pragma omp parallel for
 	for (ii=0; ii < SIZE; ii++) {
 		for (int j=0; j < SIZE; j++) {
-			mat_B_T[j][ii] = mat_B[ii][j];
+			// Making sure that each thread works on one row of the output matrix;
+			// that way there is no false sharing as data to the same row is not 
+			// written by different threads
+			mat_B_T[ii][j] = mat_B[j][ii];
 		}
 	}
 

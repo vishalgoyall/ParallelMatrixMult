@@ -30,8 +30,8 @@ int main() {
 	// Array initialization
 	for (int i=0; i < SIZE; i++) {
 		for (int j=0; j < SIZE; j++) {
-			mat_A[i][j] = (float)(rand() % 10);
-			mat_B[i][j] = (float)(rand() % 10);
+			mat_A[i][j] = rand()/(float)1147483648;
+			mat_B[i][j] = rand()/(float)1147483648;
 		}
 	}
 
@@ -67,9 +67,11 @@ int main() {
 	gettimeofday(&start_time, NULL);
 	
 	// Transposing the matrix
-	for (int i=0; i < SIZE; i++) {
+	int ii;
+	#pragma omp parallel for
+	for (int ii=0; ii < SIZE; ii++) {
 		for (int j=0; j < SIZE; j++) {
-			mat_B_T[j][i] = mat_B[i][j];
+			mat_B_T[ii][j] = mat_B[j][ii];
 		}
 	}
 
