@@ -127,6 +127,8 @@ int main() {
 	*/
 	
 	
+	printf("\n*****************************\n");
+	printf("Competition code\n");
 	printf("Min value is %f at coordinates (%d, %d)\n", min, min_row, min_col);
 	long int start_time_final, stop_time_final;
 	start_time_final = (long int)start_time.tv_sec * 1000000 + (long int)start_time.tv_usec;
@@ -135,5 +137,6 @@ int main() {
 	//printf("stop final time is %ld \n", stop_time_final);
 	
 	printf("multiplication time: %ld microseconds\n", stop_time_final - start_time_final);
+	printf("\n*****************************\n");
 
 }
