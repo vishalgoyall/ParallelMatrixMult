@@ -33,6 +33,7 @@ int main() {
 	// Getting start time
 	gettimeofday(&start_time, NULL);
 
+	// Transposing the matrix B
 	for (int i=0; i < SIZE; i++) {
 		for (int j=0; j < SIZE; j++) {
 			mat_B_T[j][i] = mat_B[i][j];

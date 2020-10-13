@@ -1,5 +1,5 @@
 ///////////////////////////////
-// Sequential code to do matrix multiplication of two arrays
+// 
 ///////////////////////////////
 
 #include <stdio.h>
@@ -89,7 +89,7 @@ int main() {
 	// Transposing the matrix B
 	for (int i=0; i < SIZE; i++) {
 		for (int j=0; j < SIZE; j++) {
-			mat_B_T[j][i] = mat_B[i][j];
+			mat_B_T[i][j] = mat_B[j][i];
 		}
 	}
 

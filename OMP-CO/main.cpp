@@ -1,5 +1,5 @@
 ///////////////////////////////
-// Cache-optimised Sequential code to do matrix multiplication of two arrays
+// 
 ///////////////////////////////
 
 #include <stdio.h>
@@ -84,25 +84,6 @@ int main() {
 	int thread_min_col [NUM_OF_THREADS][8];
 	for (int i=0; i < NUM_OF_THREADS; i++) thread_min_val[i][0] = min;
 
-	// Case 1:
-	/*
-	for (int i=0; i < SIZE; i++) {
-		for (int j=0; j < SIZE; j++) {
-			mult_T[i][j] = 0;
-			#pragma omp parallel
-			{
-				int thread_id = omp_get_thread_num();
-				int total_threads = omp_get_num_threads();
-				if (id == 0) num_actual_threads = total_threads;
-
-				part_sum[id][0] = parallel_vect_mult(id, total_threads, A, B);
-			}
-			for (int k=0; k<num_actual_threads; k++) mult_T[i][j] += part_sum[id][0];
-		}
-	}
-	*/
-
-	// Case 2:
 	int i;
 	#pragma omp parallel for
 	for (i=0; i< SIZE; i++) {
@@ -117,7 +98,6 @@ int main() {
 				thread_min_row[thread_id][0] = i;
 				thread_min_col[thread_id][0] = j;
 			}
-			//printf("value of mult at %d and %d is %f calculated by %d thread\n", i, j, mult_T[i][j], thread_id);
 		}
 	}
 

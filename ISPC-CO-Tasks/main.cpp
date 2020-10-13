@@ -1,5 +1,5 @@
 ///////////////////////////////
-// Sequential code to do matrix multiplication of two arrays
+// 
 ///////////////////////////////
 
 #include <stdio.h>
@@ -64,14 +64,6 @@ int main() {
 	matrix_transpose(mat_B, mat_B_T, elems_in_partition);
 
 	/*
-	for (int i=0; i < SIZE; i++) {
-		for (int j=0; j < SIZE; j++) {
-			mat_B_T[j][i] = mat_B[i][j];
-		}
-	}
-	*/
-
-	/*
 	// print A
 	for (int i=0; i < SIZE; i++) {
 		for (int j=0; j < SIZE; j++) {
@@ -109,20 +101,6 @@ int main() {
 			min_col = min_col_in_task[i];
 		}
 	}
-	// for (int i=0; i < SIZE; i++) {
-	// 	for (int j=0; j < SIZE; j++) {
-	// 		mult[i][j] = 0;
-	// 		mult[i][j] = vector_mult(mat_A[i], mat_B_T[j], SIZE);
-	// 		if (mult[i][j] < min) {
-	// 			min = mult[i][j];
-	// 			min_row = i;
-	// 			min_col = j;
-	// 		}
-	// 		//printf("%f\t", mult[i][j]);
-	// 	}
-	// 	//printf("\n");
-	// }
-	//printf("\n");
 	gettimeofday(&stop_time, NULL);
 
 	/*

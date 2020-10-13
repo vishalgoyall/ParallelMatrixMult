@@ -1,5 +1,5 @@
 ///////////////////////////////
-// Sequential code to do matrix multiplication of two arrays
+//
 ///////////////////////////////
 
 #include <stdio.h>
@@ -41,9 +41,6 @@ void *sub_matrix_mult (void* thread_args) {
 	local_args->min_elem = std::numeric_limits<float>::max();
 	local_args->min_elem_row = local_args->start_row;
 	local_args->min_elem_col = 0;
-	//args local_args = (args)thread_args;
-	//printf("%d first elem of A is %f\n", local_args->thread_no, local_args->A[local_args->start_row][0]);
-	//printf("thread %d first element of A is %d\n", local_args->thread_no, local_args->A);
 	for (int i=local_args->start_row; i < (local_args->start_row + local_args->num_rows); i++) {
 		for (int j=0; j<SIZE; j++) {
 			local_args->mult_T[i][j] = vector_mult(local_args->A[i], local_args->B[j], SIZE);

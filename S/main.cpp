@@ -50,6 +50,7 @@ int main() {
 	*/
 	
 	gettimeofday(&start_time, NULL);
+
 	// Multiplication
 	for (int i=0; i < SIZE; i++) {
 		for (int j=0; j < SIZE; j++) {
@@ -62,11 +63,9 @@ int main() {
 				min_row = i;
 				min_col = j;
 			}
-			//printf("%f\t", mult[i][j]);
 		}
-		//printf("\n");
 	}
-	//printf("\n");
+
 	gettimeofday(&stop_time, NULL);
 
 	/*

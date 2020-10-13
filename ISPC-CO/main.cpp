@@ -1,5 +1,5 @@
 ///////////////////////////////
-// Sequential code to do matrix multiplication of two arrays
+// 
 ///////////////////////////////
 
 #include <stdio.h>
@@ -81,11 +81,9 @@ int main() {
 				min_row = i;
 				min_col = j;
 			}
-			//printf("%f\t", mult[i][j]);
 		}
-		//printf("\n");
 	}
-	//printf("\n");
+
 	gettimeofday(&stop_time, NULL);
 
 	/*
