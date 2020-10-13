@@ -32,6 +32,11 @@ compile_ISPCT: ISPC-CO-Tasks/main.cpp
 	g++ -c ISPC-CO-Tasks/tasksys.cpp -o ISPC-CO-Tasks/tasksys.o -pthread
 	g++ $< ISPC-CO-Tasks/main_ispc.o ISPC-CO-Tasks/tasksys.o -pthread -o ISPC-CO-Tasks/main -D SIZE=${SIZE} -D NUM_OF_TASKS=${THREADS}
 
+compile_competition: Competition/main.cpp
+	ispc Competition/main.ispc -h Competition/main_ispc.h -o Competition/main_ispc.o -DSIZE=${SIZE} -DNUM_OF_TASKS=${THREADS}
+	g++ -c Competition/tasksys.cpp -o Competition/tasksys.o -pthread
+	g++ $< Competition/main_ispc.o Competition/tasksys.o -fopenmp -pthread -o Competition/main -D SIZE=${SIZE} -D NUM_OF_TASKS=${THREADS}
+
 ##############################
 # Targets to run all the individual codes
 ##############################
@@ -60,6 +65,9 @@ run_OMPI: OMP-CO-ISPC/main
 run_ISPCT: ISPC-CO-Tasks/main
 	$<
 
+run_competition: Competition/main
+	$<
+
 ##############################
 # Combined targets
 ##############################
@@ -80,9 +88,11 @@ OMPI: compile_OMPI run_OMPI
 
 ISPCT: compile_ISPCT run_ISPCT
 
+competition: compile_competition run_competition
+
 ##############################
 # global target to make all
 ##############################
 
-all: S SCO ISPC PTH OMP PTHI OMPI ISPCT
+all: S SCO ISPC PTH OMP PTHI OMPI ISPCT competition
 
